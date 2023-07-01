@@ -7,9 +7,18 @@
   <title>Base Converter Quiz</title>
 </head>
 
-<body>
-  <div id="app">
-    <h1 class="text-red-500">Hello World!</h1>
+<body class="h-screen bg-sky-50">
+  <div id="app" class="flex justify-center items-center pt-14 gap-10 flex-col">
+    <header>
+      <h1 class="text-5xl">Random Base Converter</h1>
+    </header>
+
+    <main>
+      <p class="text-3xl">
+        Task: <span id="convert">80</span><sub class="text-base" id="base-1">10</sub> =
+        <span>?</span><sub class="text-base" id="base-2">2</sub>
+      </p>
+    </main>
   </div>
   <script type="module" src="./src/main.ts"></script>
 </body>
