@@ -14,10 +14,21 @@
     </header>
 
     <main>
-      <p class="text-3xl">
+      <p class="text-3xl text-center">
         Task: <span id="convert">80</span><sub class="text-base" id="base-1">10</sub> =
         <span>?</span><sub class="text-base" id="base-2">2</sub>
       </p>
+      <div class="mt-10 flex justify-center items-center flex-col md:flex-row gap-5">
+        <label class="text-3xl" for="guess-input">Your Answer: </label>
+        <input
+          class="text-3xl bg-sky-50 outline outline-2 outline-black p-1 rounded focus:outline-offset-8 transition-all ease-in-out duration-300"
+          type="text" name="guess-input" id="guess-input">
+      </div>
+      <div class="flex justify-between items-center mt-10">
+        <button class="hidden btn">Show Answer</button>
+        <p id="answer-status"></p>
+        <button class="btn">Check</button>
+      </div>
     </main>
   </div>
   <script type="module" src="./src/main.ts"></script>
