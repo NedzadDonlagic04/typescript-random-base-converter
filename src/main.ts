@@ -2,7 +2,7 @@ import './style.css';
 import functions from './functions';
 import constants from './constants';
 
-let bases: number[] = [...constants.BASES];
+const bases: number[] = [...constants.BASES];
 
 function init() {
   const numberToConvertEl = document.getElementById('convert') as HTMLSpanElement | null;
