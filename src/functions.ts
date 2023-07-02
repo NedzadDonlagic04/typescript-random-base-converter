@@ -19,12 +19,12 @@ function generateNumberForConversion(min: number = 0, max: number = 1000): numbe
   return generateRandomNum(min, max);
 }
 
-function randomizeNumbers(numberToConvertEl: HTMLSpanElement, convertingFromBaseEl: HTMLSpanElement, convertingToBaseEl: HTMLSpanElement, bases: number[]): number[] {
+function randomizeNumbers(numberToConvertEl: HTMLSpanElement, convertingFromBaseEl: HTMLSpanElement, convertingToBaseEl: HTMLSpanElement): number[] {
+  const bases: number[] = [...constants.BASES];
+
   const convertingFromBase: number = getRandomBase(bases);
   const convertToBase: number = getRandomBase(bases);
   const numberToConvert: number = generateNumberForConversion();
-
-  bases = [...constants.BASES];
 
   numberToConvertEl.innerText = numberToConvert.toString(convertingFromBase).toUpperCase();
   convertingFromBaseEl.innerText = convertingFromBase + "";
@@ -33,6 +33,20 @@ function randomizeNumbers(numberToConvertEl: HTMLSpanElement, convertingFromBase
   return [numberToConvert, convertingFromBase, convertToBase];
 }
 
+function checkIfAnswerIsCorrect(answerInputEl: HTMLInputElement, correctAnswer: number, convertToBase: number): boolean {
+  const answer: string = answerInputEl.value;
+
+  try {
+    const convertedValue = parseInt(answer, convertToBase);
+
+    return correctAnswer === convertedValue;
+  } catch (err: any) {
+    console.error(err);
+    return false;
+  }
+}
+
 export default {
-  randomizeNumbers
+  randomizeNumbers,
+  checkIfAnswerIsCorrect
 };
