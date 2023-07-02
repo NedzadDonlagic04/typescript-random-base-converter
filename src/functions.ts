@@ -15,7 +15,7 @@ function getRandomBase(bases: number[]): number {
   return base;
 }
 
-function generateNumberForConversion(min: number = 0, max: number = 300): number {
+function generateNumberForConversion(min: number = 0, max: number = 1000): number {
   return generateRandomNum(min, max);
 }
 
@@ -26,7 +26,7 @@ function randomizeNumbers(numberToConvertEl: HTMLSpanElement, convertingFromBase
 
   bases = [...constants.BASES];
 
-  numberToConvertEl.innerText = numberToConvert + "";
+  numberToConvertEl.innerText = numberToConvert.toString(convertingFromBase).toUpperCase();
   convertingFromBaseEl.innerText = convertingFromBase + "";
   convertingToBaseEl.innerText = convertToBase + "";
 
