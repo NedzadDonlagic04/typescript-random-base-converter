@@ -10,7 +10,7 @@
 <body class="h-screen bg-sky-50">
   <div id="app" class="flex justify-center items-center pt-14 gap-10 flex-col">
     <header>
-      <h1 class="text-5xl">Random Base Converter</h1>
+      <h1 class="text-5xl text-center">Random Base Converter</h1>
     </header>
 
     <main>
@@ -19,15 +19,15 @@
         <span>?</span><sub class="text-base" id="base-2">2</sub>
       </p>
       <div class="mt-10 flex justify-center items-center flex-col md:flex-row gap-5">
-        <label class="text-3xl" for="guess-input">Your Answer: </label>
+        <label class="text-3xl" for="guess-input">Answer: </label>
         <input
-          class="text-3xl bg-sky-50 outline outline-2 outline-black p-1 rounded focus:outline-offset-8 transition-all ease-in-out duration-300"
+          class="text-3xl bg-sky-50 w-full outline outline-2 outline-black p-1 rounded focus:outline-offset-8 transition-all ease-in-out duration-300"
           type="text" name="guess-input" id="guess-input">
       </div>
       <div class="flex justify-between items-center mt-10">
-        <button class="hidden btn">Show Answer</button>
-        <p id="answer-status"></p>
-        <button class="btn">Check</button>
+        <button class="hidden btn" id="show-answer">Show Answer</button>
+        <p class="text-2xl text-red-500" id="answer-status"></p>
+        <button class="btn" id="check-answer">Check</button>
       </div>
     </main>
   </div>
