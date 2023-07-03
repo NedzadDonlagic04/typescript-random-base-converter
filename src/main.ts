@@ -10,6 +10,7 @@ function init() {
 
   const answerStatusEl = document.getElementById('answer-status') as HTMLParagraphElement | null;
   const checkAnswerBtn = document.getElementById('check-answer') as HTMLButtonElement | null;
+  const nextQuestionBtn = document.getElementById('next-question') as HTMLButtonElement | null;
   const showAnswerBtn = document.getElementById('show-answer') as HTMLButtonElement | null;
 
   if (!numberToConvertEl) throw new Error('No instance of element with id "convert"');
@@ -18,6 +19,7 @@ function init() {
   else if (!guessInputEl) throw new Error('No instance of element with id "guess-input"');
   else if (!answerStatusEl) throw new Error('No instance of element with id "answer-status"');
   else if (!checkAnswerBtn) throw new Error('No instance of element with id "check-answer"');
+  else if (!nextQuestionBtn) throw new Error('No instance of element with id "next-question"');
   else if (!showAnswerBtn) throw new Error('No instance of element with id "show-answer"');
 
   return {
@@ -27,6 +29,7 @@ function init() {
     guessInputEl,
     answerStatusEl,
     checkAnswerBtn,
+    nextQuestionBtn,
     showAnswerBtn
   };
 }
@@ -38,12 +41,18 @@ const {
   guessInputEl,
   answerStatusEl,
   checkAnswerBtn,
+  nextQuestionBtn,
   showAnswerBtn
 } = init();
 
 let [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
 
-function checkAnswerEvent() {
+function switchButtons() {
+  checkAnswerBtn.style.display = (checkAnswerBtn.style.display === 'none')? 'block' : 'none';
+  nextQuestionBtn.style.display = (nextQuestionBtn.style.display === 'block')? 'none' : 'block';
+}
+
+checkAnswerBtn.addEventListener('click', () => {
   const doAnswersMatch = functions.checkIfAnswerIsCorrect(guessInputEl, numberToConvert, convertToBase);
 
   if (doAnswersMatch) {
@@ -56,19 +65,7 @@ function checkAnswerEvent() {
     answerStatusEl.innerText = "Wrong Answer!";
     showAnswerBtn.style.display = "block";
   }
-}
-
-function nextQuestionEvent() {
-  [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
-  answerStatusEl.innerText = "";
-  showAnswerBtn.style.display = "none";
-
-  guessInputEl.value = "";
-  guessInputEl.disabled = false;
-
-  checkAnswerBtn.innerText = "Check";
-  checkAnswerBtn.onclick = checkAnswerEvent;
-}
+});
 
 showAnswerBtn.addEventListener('click', () => {
   answerStatusEl.innerText = "";
@@ -76,8 +73,16 @@ showAnswerBtn.addEventListener('click', () => {
   guessInputEl.value = numberToConvert.toString(convertToBase);
   guessInputEl.disabled = true;
 
-  checkAnswerBtn.innerText = "Next";
-  checkAnswerBtn.onclick = nextQuestionEvent;
+  switchButtons();
 });
 
-checkAnswerBtn.onclick = checkAnswerEvent;
+nextQuestionBtn.addEventListener('click', () => {
+  [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
+  answerStatusEl.innerText = "";
+  showAnswerBtn.style.display = "none";
+
+  guessInputEl.value = "";
+  guessInputEl.disabled = false;
+
+  switchButtons();
+});
