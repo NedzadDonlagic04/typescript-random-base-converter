@@ -43,8 +43,6 @@ const {
 
 let [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
 
-// console.log(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl, guessInputEl, answerStatusEl, checkAnswerBtn, showAnswerBtn);
-
 function checkAnswerEvent() {
   const doAnswersMatch = functions.checkIfAnswerIsCorrect(guessInputEl, numberToConvert, convertToBase);
 
