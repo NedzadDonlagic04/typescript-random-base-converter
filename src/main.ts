@@ -67,7 +67,7 @@ function nextQuestionEvent() {
   guessInputEl.disabled = false;
 
   checkAnswerBtn.innerText = "Check";
-  checkAnswerBtn.addEventListener('click', checkAnswerEvent);
+  checkAnswerBtn.onclick = checkAnswerEvent;
 }
 
 showAnswerBtn.addEventListener('click', () => {
@@ -77,7 +77,7 @@ showAnswerBtn.addEventListener('click', () => {
   guessInputEl.disabled = true;
 
   checkAnswerBtn.innerText = "Next";
-  checkAnswerBtn.addEventListener('click', nextQuestionEvent);
+  checkAnswerBtn.onclick = nextQuestionEvent;
 });
 
-checkAnswerBtn.addEventListener('click', checkAnswerEvent);
+checkAnswerBtn.onclick = checkAnswerEvent;
