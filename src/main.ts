@@ -45,20 +45,41 @@ let [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNu
 
 // console.log(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl, guessInputEl, answerStatusEl, checkAnswerBtn, showAnswerBtn);
 
-showAnswerBtn.addEventListener('click', () => {
-
-});
-
-checkAnswerBtn.addEventListener('click', () => {
+function checkAnswerEvent() {
   const doAnswersMatch = functions.checkIfAnswerIsCorrect(guessInputEl, numberToConvert, convertToBase);
 
   if (doAnswersMatch) {
     [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
 
+    guessInputEl.value = "";
     answerStatusEl.innerText = "";
     showAnswerBtn.style.display = "none";
   } else {
     answerStatusEl.innerText = "Wrong Answer!";
     showAnswerBtn.style.display = "block";
   }
+}
+
+function nextQuestionEvent() {
+  [numberToConvert, convertingFromBase, convertToBase] = functions.randomizeNumbers(numberToConvertEl, convertingFromBaseEl, convertingToBaseEl);
+  answerStatusEl.innerText = "";
+  showAnswerBtn.style.display = "none";
+
+  guessInputEl.value = "";
+  guessInputEl.disabled = false;
+
+  checkAnswerBtn.innerText = "Check";
+  checkAnswerBtn.addEventListener('click', checkAnswerEvent);
+}
+
+showAnswerBtn.addEventListener('click', () => {
+  answerStatusEl.innerText = "";
+
+  guessInputEl.value = numberToConvert.toString(convertToBase);
+  guessInputEl.disabled = true;
+
+  checkAnswerBtn.innerText = "Next";
+  checkAnswerBtn.addEventListener('click', nextQuestionEvent);
 });
+
+checkAnswerBtn.addEventListener('click', checkAnswerEvent);
